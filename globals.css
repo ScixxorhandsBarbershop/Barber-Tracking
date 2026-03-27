@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #C9A84C;
+  --gold-dim: #8a6f2e;
+  --surface-0: #0a0a0a;
+  --surface-1: #111111;
+  --surface-2: #181818;
+  --surface-3: #222222;
+  --surface-4: #2a2a2a;
+  --surface-5: #333333;
+  --text-primary: #f5f5f5;
+  --text-secondary: #999999;
+  --text-muted: #555555;
+  --border: #222222;
+  --border-hover: #333333;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--surface-0);
+  color: var(--text-primary);
+  min-height: 100dvh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+/* Gold shimmer utility */
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--gold) 0%,
+    #f0d080 40%,
+    var(--gold) 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+/* Glass card */
+.glass {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Input base */
+.input-base {
+  @apply w-full bg-surface-2 border border-surface-5 rounded-lg px-4 py-3
+         text-white placeholder-surface-5 focus:outline-none focus:border-gold-500
+         transition-colors duration-150;
+}
+
+/* Button variants */
+.btn-gold {
+  @apply bg-gold-500 text-black font-semibold rounded-lg px-5 py-3
+         hover:bg-gold-400 active:bg-gold-600
+         transition-all duration-150 select-none;
+}
+
+.btn-ghost {
+  @apply border border-surface-5 text-white rounded-lg px-5 py-3
+         hover:border-surface-5 hover:bg-surface-2
+         transition-all duration-150 select-none;
+}
+
+/* Stat card */
+.stat-card {
+  @apply bg-surface-1 border border-surface-3 rounded-xl p-5
+         hover:border-surface-4 transition-colors duration-200;
+}
+
+/* Safe area for iOS */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.safe-top    { padding-top: env(safe-area-inset-top, 0px); }
